@@ -7,15 +7,15 @@ Are you a student struggling to attract attendees for your organization's events
 ## MVP
 
 - User account with user authentication
-- Upcoming events tab for registered events
 - UTD student organization accounts (authorized to upload images of posters/events to feed)
-- OCR to extract text from posters and update event info
 - Events feed to showcase event posters (posted by organization accounts) to users
 - “interested” and “not interested” buttons below posts for users
+- Upcoming events tab for displaying registered events
 - Friend’s tab for list of friends/search to add friends
 - Notification system to alert users/friend list about upcoming interested events, ticket availability, or any last-minute changes and to see which friends are interested in which events (accepted or declined).
 - Allow users to seamlessly integrate event details with their Google Calendar app.
 - Link to UTD maps for proper direction towards event location.
+- OCR to extract text from posters and update event info
 
 ## Stretch Goals
 
