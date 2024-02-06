@@ -26,3 +26,199 @@ Are you a student struggling to attract attendees for your organization's events
 - Integrate UTD hosted events as well
 - Implement a recommendation system that suggests events based on users' preferences, past attendance, or interests.
 - Include analytics tools to track user behavior, popular events, and engagement metrics.
+
+<details>
+  <summary>Week 1 (Build Night 1 – Dev Night 1)</summary>
+
+  - Meet team.
+  - Decide Frontend/Backend team.
+
+  **Before Design Day**
+
+  - Familiarize yourself with tech stack (link resources)
+    - Frontend: Flutter
+    - Backend: Flutter/Firebase
+
+  **Design Day**
+
+  - Setup:
+    - Flutter
+    - Android Studio
+    - Create Firebase project.
+    - Github repo
+  - Brainstorm basic design layout
+
+  **Tasks:**
+
+  - Front-end:
+    - Create low fidelity wireframes (Figma if familiar)
+    - Learn Flutter (tutorials)
+  - Firebase:
+    - Learn Firebase 
+    - Research Google Maps/ Google Cloud OCR
+
+  **Dev Night 1:**
+
+  - Troubleshoot github/flutter/firebase setup issues if any.
+  - Meet mentors.
+</details>
+
+<details>
+  <summary>Week 2 (Dev Night 1 – Build Night 2)</summary>
+
+  **Team meeting**
+
+  - Flesh out full vision of the App
+
+  **Front-end:**
+
+  - Learn Flutter
+  - Show High fidelity Figma pages (as many pages as possible)
+  - Start Coding Login Pages in Dart
+  - Continue Figma pages (for other pages)
+
+  **Backend:**
+
+  - Learn Firebase
+  - Set up a database to store user information.
+  - Set up Firebase user authentication.
+  - Set up a database design to store Organization poster/event objects.
+
+  **Build Night 2:**
+
+  **Front-end:**
+
+  - Figma pages (complete core pages)
+  - Login pages (implemented)
+
+  **Back-end:**
+
+  - User Authentication complete
+  - Able to store user information in the database (user models created)
+  - Show initial database design
+</details>
+
+<details>
+  <summary>Week 3 (Build Night 2 – Dev Night 2)</summary>
+
+  **Team meeting:**
+
+  **Front-end and Backend Integration:**
+
+  - User Auth Backend with Login Pages Frontend
+
+  **Frontend:**
+
+  - Finalize UI Design for all pages
+  - Research how to upload/capture images in Flutter
+  - Code core pages (Events display tab)
+
+  **Back-end:**
+
+  - Set up a database to store Organization poster/event objects
+  - Research Firebase notifications/other notification options
+
+  **Dev Night 2:**
+
+  - Troubleshoot errors
+  - Make up for delayed parts/edit design choices if needed.
+</details>
+
+<details>
+  <summary>Week 4 (Dev Night 2 – Build Night 3)</summary>
+
+  **Team meeting:**
+
+  **Frontend:**
+
+  - Finish Events tab
+  - Start on Upcoming events tab for displaying registered events.
+
+  **Back-end:**
+
+  - Start Notification implementation.
+  - Implement the ability to upload images and take pictures of posters to Firebase Storage
+  - Research Google Maps/ UTD Maps Integration
+
+  **Build Night 3:**
+
+  **Front end:**
+
+  - Events tab (complete)
+
+  **Backend:**
+
+  - Firebase storage set up (complete)
+  - Discuss Notification System/Google maps
+</details>
+
+<details>
+  <summary>Week 5/6 (Build Night 3 – Dev Night 3) SPRING BREAK</summary>
+
+  **Team meeting:**
+
+  - Address errors
+  - Fix up missing tasks
+  - Set clear expectations for the next week
+  - Finish core features over break 😊
+  - Integrate Firebase storage images with Events feed to pull up images from the database and show it in the events feed
+
+  **Front-end:**
+
+  - Interest “buttons”
+  - User Avatars
+  - Upcoming events tab for displaying registered events 
+  - Friend’s tab for list of friends/search to add friends
+  - Start editing the main events feed with other options:
+    - Maps
+    - Google calendar
+
+  **Back-end:**
+
+  - Notification system to alert users/friend list about upcoming interested events, ticket availability, or any last-minute changes and to see which friends are interested in which events (accepted or declined).
+  - Allow users to seamlessly integrate event details with their Google Calendar app.
+  - Link to UTD maps for proper direction towards event location.
+  - Research OCR to extract text from posters and update event info
+
+  **Full-stack:**
+
+  - Research integration of Open AI for personalized event recommendations
+
+  **Dev Night 3:**
+
+  - Integrate Interest “buttons” with the Notification system
+  - Google Calendar update/troubleshooting
+  - UTD maps?
+</details>
+
+<details>
+  <summary>Week 7 (Dev Night 3 – Build Night 4)</summary>
+
+  - Backend and frontend communication to finish integrating backend with frontend to connect and test.
+  - Polish up MVP
+  - AI Update
+
+  **Back-end:**
+
+  - Google Calendar integration 
+  - UTD Maps
+  - OCR Update
+</details>
+
+<details>
+  <summary>Week 8 (Build Night 4 – Dev night 4)</summary>
+
+  - Finish Features
+</details>
+
+<details>
+  <summary>Week 9 (Dev Night 4 – Build Night 5)</summary>
+
+  - Work on Stretch goals/any last-minute troubleshooting
+</details>
+
+<details>
+  <summary>Week 10 (Build Night 5 - Presentation Night)</summary>
+
+  - Practice presentation
+</details>
