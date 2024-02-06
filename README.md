@@ -27,6 +27,8 @@ Are you a student struggling to attract attendees for your organization's events
 - Implement a recommendation system that suggests events based on users' preferences, past attendance, or interests.
 - Include analytics tools to track user behavior, popular events, and engagement metrics.
 
+## Milestones
+
 <details>
   <summary>Week 1 (Build Night 1 – Dev Night 1)</summary>
 
