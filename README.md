@@ -222,3 +222,70 @@ Are you a student struggling to attract attendees for your organization's events
 
   - Practice presentation
 </details>
+
+
+# Tech Stack
+
+## Front-End: [Flutter](https://www.youtube.com/watch?v=8saLa5fh0ZI)
+
+### Flutter Installation
+Easy to learn, works on both macs and windows, good for mobile applications, contains helpful libraries as well
+
+### Resources:
+- [Flutter Basics](https://www.youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ)
+- [Using Flutter w/ Firebase](https://firebase.google.com/docs/flutter/setup?platform=ios)
+- [Taking Picture with Flutter](https://docs.flutter.dev/cookbook/plugins/picture-using-camera)
+- [Flutter Docs](https://docs.flutter.dev/)
+- [Implement OCR with Firebase Cloud Functions and Google Cloud Vision](https://www.youtube.com/watch?v=bTEU10c3gds)
+
+## Back-End: Firebase
+Easily compatible with Flutter, works well with Google Cloud OCR
+
+### Resources: 
+- [Using Flutter w/ Firebase](https://firebase.google.com/docs/flutter/setup?platform=ios)
+- [Youtube Playlist: Flutter + Firebase](https://www.youtube.com/playlist?list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC)
+- [Google Cloud OCR Documentation](https://cloud.google.com/vision/docs/ocr)
+- [Google Cloud OCR + Flutter](https://firebase.google.com/docs/ml/android/recognize-text)
+- [OCR Tutorial](https://cloud.google.com/functions/docs/tutorials/ocr)
+- [Implement OCR with Firebase Cloud Functions and Google Cloud Vision](https://www.youtube.com/watch?v=bTEU10c3gds)
+- [Introducing Firebase Notifications](https://www.youtube.com/watch?v=rTB7fTqMlS0)
+- [Creating events in Google Calendar (100 Days of Google Dev)](https://www.youtube.com/watch?v=tNo9IoZMelI&t=353s)
+
+### APIs
+- [Google Calendar](https://developers.google.com/calendar/api/guides/overview)
+- [Google cloud OCR](https://cloud.google.com/vision/docs/ocr)
+
+## Software to Install
+
+- [Visual Studio Code](https://code.visualstudio.com/) or [Android Studio](https://developer.android.com/studio)
+- [Git](https://git-scm.com/downloads) (version control)
+- [Flutter](https://docs.flutter.dev/get-started/editor) 
+- [Firebase](https://firebase.google.com/docs/cli) 
+
+## Roadblocks and Possible Solutions
+
+- Difficult to implement the Google Cloud image OCR in the backend (Firebase)
+  - There is a way to implement directly in Flutter
+  - [Flutter Plugin to use Google Vision API](https://pub.dev/packages/google_ml_vision)
+  - However, using the Google Cloud OCR in the backend is more accurate
+  - [Read this article for more info](https://medium.com/dreamwod-tech/cloud-vision-vs-flutter-mlkit-for-ocr-detection-of-concept2-machine-514098f894af)
+
+- Implementing accurate information into Google Calendar
+- Handling multiple user types and corresponding user views: Organizations, Students, Friends
+
+## Competition
+
+- Posting event poster/updates on Instagram stories/posts to update followers (not as efficient since people may follow multiple accounts and that post may get lost/ having to check stories to see any updates)
+- Hanging posters around campus(old school way)
+- UTD app has events tab (only includes university hosted events)
+
+## Other Resources
+
+- [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+- [Git in-depth tutorial](https://youtu.be/RGOj5yH7evk)
+- [Postman set up tutorial](https://youtu.be/3eHJkcA8mTs)
+- [Sharing any graphics using Box](https://utdallas.account.box.com/login)
+- [Sign up for Figma](https://www.figma.com/signup)
+- [Wireframe design inspiration](https://dribbble.com/shots/popular/web-design)
+- Resources to make presentations:
+  - [Pitch (more “professional” templates)](https://pitch.com/)
