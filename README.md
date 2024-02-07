@@ -291,3 +291,15 @@ Easily compatible with Flutter, works well with Google Cloud OCR
 - [Wireframe design inspiration](https://dribbble.com/shots/popular/web-design)
 - Resources to make presentations:
   - [Pitch (more “professional” templates)](https://pitch.com/)
+ 
+## Developers 👥
+- Shruti Gupta 
+- Seeyan Shabbar Gaus Newaz
+- Dhruv Tripathi
+- Charu Yuvaraja
+- Sifat Islam
+
+## Project Team
+- Nadeeba Atiqui - Project Manager
+- Sam Stegall - Industry Mentor
+
