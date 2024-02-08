@@ -16,12 +16,12 @@ Are you a student struggling to attract attendees for your organization's events
 - Upcoming events tab for displaying registered events
 - Friend’s tab for list of friends/search to add friends
 - Notification system to alert users/friend list about upcoming interested events, ticket availability, or any last-minute changes and to see which friends are interested in which events (accepted or declined).
-- Allow users to seamlessly integrate event details with their Google Calendar app.
-- Link to UTD maps for proper direction towards event location.
-- OCR to extract text from posters and update event info
+- Allow users to seamlessly integrate event details with their Google Calendar app
 
 ## Stretch Goals
 
+- Link to UTD maps for proper direction towards event location
+- OCR to extract text from posters and update event info
 - UTD SSO login
 - Messaging option (to both friends and event organizer pages)
 - Space within the app for users to discuss upcoming events, share experiences, and connect with fellow attendees.
