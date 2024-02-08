@@ -1,5 +1,7 @@
 # ExpertEvents
 
+![Events](https://github.com/acm-projects/ExpertEvents/blob/main/events.jpg)
+
 
 ## Summary
 
