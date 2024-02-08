@@ -60,7 +60,7 @@ Are you a student struggling to attract attendees for your organization's events
     - Learn Flutter (tutorials)
   - Firebase:
     - Learn Firebase 
-    - Research Google Maps/ Google Cloud OCR
+    - Research Google Calendar/ Google Cloud OCR
 
   **Dev Night 1:**
 
