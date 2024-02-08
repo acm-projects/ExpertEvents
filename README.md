@@ -1,5 +1,5 @@
 # ExpertEvents
-[![ExpertEvents](C:\Users\nadee\OneDrive\Desktop\events.jpg)](#expertevents)
+
 
 ## Summary
 
