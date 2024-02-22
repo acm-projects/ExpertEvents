@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871374619509",
+    "project_id": "expertevents-7bbc6",
+    "storage_bucket": "expertevents-7bbc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871374619509:android:ea912bde4da8a23441893c",
+        "android_client_info": {
+          "package_name": "com.example.expert_events_flutter_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfW6SZdaeLIxdIFbr67zZtPMnWrF2GoPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
