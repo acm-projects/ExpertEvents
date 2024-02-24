@@ -1,8 +1,15 @@
+import 'package:expert_events_flutter_project/events.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 void main() {
   runApp(const MyApp());
+  DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is awesome', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
+  
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
