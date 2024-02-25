@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
+import '../../global/common/toast.dart';
 
 class FirebaseAuthService{
 
@@ -13,7 +14,7 @@ class FirebaseAuthService{
             return credential.user;
 
         } on FirebaseAuthException catch (e) {
-            
+            print(e.message);
             if (e.code == 'email-already-in-use'){
                 showToast(message: 'The email address is already in use.');
             } else {
@@ -24,7 +25,7 @@ class FirebaseAuthService{
         return null;
     }
     
-    //User sign up
+    //User sign in
     Future<User?> signInWithEmailAndPassword(String email, String password) async {
         
         try{
@@ -45,30 +46,30 @@ class FirebaseAuthService{
 
 //SIGN IN WITH GOOGLE 
 
-_signInWithGoogle()async{
+// _signInWithGoogle()async{
 
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+//     final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-    try {
+//     try {
 
-      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+//       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
 
-      if(googleSignInAccount != null ){
-        final GoogleSignInAuthentication googleSignInAuthentication = await
-        googleSignInAccount.authentication;
+//       if(googleSignInAccount != null ){
+//         final GoogleSignInAuthentication googleSignInAuthentication = await
+//         googleSignInAccount.authentication;
 
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-        );
+//         final AuthCredential credential = GoogleAuthProvider.credential(
+//           idToken: googleSignInAuthentication.idToken,
+//           accessToken: googleSignInAuthentication.accessToken,
+//         );
 
-        await _firebaseAuth.signInWithCredential(credential);
-        Navigator.pushNamed(context, "/home");
-      }
+//         await _firebaseAuth.signInWithCredential(credential);
+//         Navigator.pushNamed(context, "/home");
+//       }
 
-    }catch(e) {
-showToast(message: "some error occured $e");
-    }
+//     }catch(e) {
+// showToast(message: "some error occured $e");
+//     }
 
 
-  }
+//   }

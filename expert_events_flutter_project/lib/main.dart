@@ -128,20 +128,30 @@
 //some packages that we need
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import '../firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
+// Future main() async{
+//  
+//   await Firebase.initializeApp();
+//   runApp(const MyApp());
+// }
 
-Future main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
-}
 //main runApp
-void main() => runApp(const MaterialApp(
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.web,
+  );
+  runApp(const MaterialApp(
   home: Home(),
-));
+  ));
+  
+} 
 
 class MyTextField extends StatelessWidget
 {
@@ -191,13 +201,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int? _sliding = 0;
+  final FirebaseAuthService _auth = FirebaseAuthService();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
+  
   //for sliding bar
   @override
   Widget build(BuildContext context) {
-    final TextEditingController usernameController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
+    
     //main page
     return Scaffold(
         backgroundColor: const Color(0xFFFFB181),
@@ -229,8 +241,8 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: MyTextField(
-                    controller: usernameController,
-                    hintText: 'Username',
+                    controller: emailController,
+                    hintText: 'Email',
                     obscureText: false,
                   ),
                 ),
@@ -271,6 +283,7 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     onPressed: () {
                       //stuff happens when the button is pressed (leads to main page)
+                      _signIn();
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(25),
@@ -296,24 +309,24 @@ class _HomeState extends State<Home> {
                 //For sign in if your not a member
                 //Includes GestureDetector where it detects a tap
                 //On tap switches to another page
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                          MaterialPageRoute(builder: (context) => AnotherPage()),
-                      );
-                    },
-                    child: const Text(
-                      "Not a member? Sign in",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                )
+                // Center(
+                //   child: GestureDetector(
+                //     () {
+                //       Navigator.push(
+                //         context,
+                //           MaterialPageRoute(builder: (context) => AnotherPage()),
+                //       );
+                //     },
+                //     child: const Text(
+                //       "Not a member? Sign in",
+                //       style: TextStyle(
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.w500,
+                //         fontSize: 16,
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
@@ -330,6 +343,21 @@ class _HomeState extends State<Home> {
       style: const TextStyle(fontSize: 20),
     ),
   );
+
+  void _signIn() async {
+    String username = emailController.text;
+    String password = passwordController.text;
+    print("User has signed in");
+    User? user = await _auth.signInWithEmailAndPassword(username, password);
+    
+    if (user != null) {
+      print("User is successfully signed in");
+    }
+    else{
+      print("An error occured when trying to sign in user");
+    }
+
+  }
 }
 
 //The other page (sign up page)
