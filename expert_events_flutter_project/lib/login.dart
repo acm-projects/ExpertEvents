@@ -82,29 +82,33 @@ class LoginPage extends StatelessWidget
 
                   //login button
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 25), // Adjust the horizontal margin
-                    child: ElevatedButton(
-                      onPressed: () {
-                        //stuff happens when the button is pressed (leads to main page)
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(25),
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //stuff happens when the button is pressed (leads to main page)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MainEvents()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(25),
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          minimumSize: const Size(double.infinity, 50), // Set minimum width to double.infinity
                         ),
-                        minimumSize: const Size(double.infinity, 50), // Set minimum width to double.infinity
-                      ),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    ),// Adjust the horizontal margin
 
                   const SizedBox(height: 15),
 
@@ -142,7 +146,7 @@ class LoginPage extends StatelessWidget
                           ),
                         ],
                       ),
-                      ),
+                  ),
                 ],
               ),
             ),
@@ -162,7 +166,6 @@ class LoginPage extends StatelessWidget
 
   void setState(Null Function() param0) {}
 
-  @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     throw UnimplementedError();
