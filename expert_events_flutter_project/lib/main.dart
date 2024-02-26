@@ -1,15 +1,44 @@
 import 'package:expert_events_flutter_project/events.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutterfire_cli/flutterfire_cli.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'firebase_config.dart';
 
-
-
-void main() {
-  runApp(const MyApp());
-  DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is awesome', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
-  
+const firebaseConfig = {
+  'apiKey': 'AIzaSyDETWQoioLp4Db5Io5UOMHYDXuII5Lwi6Q',
+  'authDomain': 'expertevents-7bbc6.firebaseapp.com',
+  'projectId': 'expertevents-7bbc6',
+  'storageBucket': 'expertevents-7bbc6.appspot.com',
+  'messagingSenderId': '871374619509',
+  'appId': '1:871374619509:web:0f4b1b1f0b3bbe1d41893c',
+  'measurementId': 'G-VF7EVZYBFH',
+};
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+); 
+ await Firebase.initializeApp(
+      options: FirebaseOptions(
+    apiKey: firebaseConfig['apiKey']!,
+    authDomain: firebaseConfig['authDomain']!,
+    projectId: firebaseConfig['projectId']!,
+    storageBucket: firebaseConfig['storageBucket']!,
+    messagingSenderId: firebaseConfig['messagingSenderId']!,
+    appId: firebaseConfig['appId']!,
+    measurementId: firebaseConfig['measurementId']!,
+  )
+ );
+ await DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
+ await DatabaseService('ABCDE').addReview('Seeyan', 'It was awesome!', 5);
+runApp(const MyApp());
 }
-
+void test() {
+  // DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
+  // DatabaseService('ABCDE').addReview('John', 'It was awesome!', 5);
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
