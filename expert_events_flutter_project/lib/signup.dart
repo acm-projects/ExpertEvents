@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:myapp/mytextfield.dart';
 import 'login.dart';
-// import 'package:expert_events_flutter_project/login.dart';
+
+//import 'package:expert_events_flutter_project/login.dart';
 
 class SignUp extends StatelessWidget {
 
   final UserType userType = UserType.user; //sets the user type as individual to default
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repasswordController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,12 +51,48 @@ class SignUp extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Column(
-                children: <Widget>[
-                  InputText(label: "Username"),
-                  InputText(label: "Email"),
-                  InputText(label: "Password", obscureText: true),
-                  InputText(label: "Confirm Password", obscureText: true),
+          Padding(
+            padding: EdgeInsets.all(0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: emailController,
+                    hintText: 'Email',
+                    obscureText: false,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: false,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: repasswordController,
+                    hintText: 'Confirm Password',
+                    obscureText: false,
+                  ),
+                ),
+              ],
+            ),
+
+        //<Widget>[
+                //   InputText(label: "Username"),
+                //   InputText(label: "Email"),
+                //   InputText(label: "Password", obscureText: true),
+                //   InputText(label: "Confirm Password", obscureText: true),
 
                   //ALLOWS USERS TO REGISTER AS AN ORGANIZATION OR AN INDIVIDUAL
                   /*ListTile(
@@ -83,7 +124,7 @@ class SignUp extends StatelessWidget {
                   ],
                 ),
               ),*/
-                ],
+               // ],
               ),
               SizedBox(height: 30),
               Container(
