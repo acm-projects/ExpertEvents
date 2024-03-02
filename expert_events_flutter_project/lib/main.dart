@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:expert_events_flutter_project/events.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'firebase_config.dart';
 
 void main() {
   runApp(const MyApp());
