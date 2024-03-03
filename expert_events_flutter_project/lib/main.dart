@@ -6,7 +6,7 @@ import 'package:flutterfire_cli/flutterfire_cli.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
 
-const firebaseConfig = {
+/* const firebaseConfig = {
   'apiKey': 'AIzaSyDETWQoioLp4Db5Io5UOMHYDXuII5Lwi6Q',
   'authDomain': 'expertevents-7bbc6.firebaseapp.com',
   'projectId': 'expertevents-7bbc6',
@@ -14,13 +14,13 @@ const firebaseConfig = {
   'messagingSenderId': '871374619509',
   'appId': '1:871374619509:web:0f4b1b1f0b3bbe1d41893c',
   'measurementId': 'G-VF7EVZYBFH',
-};
+}; */
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp(
   options: DefaultFirebaseOptions.currentPlatform,
 ); 
- await Firebase.initializeApp(
+ /*await Firebase.initializeApp(
       options: FirebaseOptions(
     apiKey: firebaseConfig['apiKey']!,
     authDomain: firebaseConfig['authDomain']!,
@@ -30,9 +30,9 @@ Future<void> main() async{
     appId: firebaseConfig['appId']!,
     measurementId: firebaseConfig['measurementId']!,
   )
- );
- await DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
- await DatabaseService('ABCDE').addReview('Seeyan', 'It was awesome!', 5);
+ );*/
+ await DatabaseService('ABCfe').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
+ await DatabaseService('ABCfe').addReview('Seeyan', 'It was awesome!', 5);
 runApp(const MyApp());
 }
 void test() {
