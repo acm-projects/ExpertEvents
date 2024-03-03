@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:expert_events_flutter_project/models/events.dart';
 
 class OrgDatabaseService {
   String uid;
@@ -27,13 +28,19 @@ class OrgDatabaseService {
     });
   }
 
-  Future addEvents(
-      String eventName, String description, String profPicEvent) async {
+  Future addEvents(String evName, String orgName, String descrip,
+      String location, String time, String poster) async {
     await org_eventsCollection.add({
-      'Event Name': eventName,
-      'Description': description,
-      'Pofile Picture': profPicEvent,
+      'Event Name': evName,
+      'Organization': orgName,
+      'Description': descrip,
+      'Location': location,
+      'Time': time,
+      'Poster Link': poster,
     });
+
+    await DatabaseService('uid')
+        .updateEventData(evName, orgName, descrip, location, time, poster);
   }
 
   Future addMessages(

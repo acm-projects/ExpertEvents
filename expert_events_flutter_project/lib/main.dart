@@ -5,6 +5,7 @@ import 'firebase_options.dart';
 import 'package:flutterfire_cli/flutterfire_cli.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
+import 'package:expert_events_flutter_project/models/events.dart';
 
 const firebaseConfig = {
   'apiKey': 'AIzaSyDETWQoioLp4Db5Io5UOMHYDXuII5Lwi6Q',
@@ -40,7 +41,12 @@ Future<void> main() async {
       'This is the ACM org description',
       'Profile picture url');
   await OrgDatabaseService('uid').addEvents(
-      'Build Night', 'Build rNight description', 'Profile picture url insert');
+      'SSO night',
+      'SSO',
+      'Study is gonnna happen!!!',
+      'ECSW 2.320',
+      'GUESDAY 8:30pm',
+      'insert SSO poster url');
   await OrgDatabaseService('uid')
       .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
   await OrgDatabaseService('uid')
