@@ -11,9 +11,9 @@ class OrgDatabaseService {
     organizationCollection =
         FirebaseFirestore.instance.collection('Organizations');
     org_eventsCollection = organizationCollection.doc(uid).collection('Events');
-    org_eventsCollection =
+    org_messagesCollection =
         organizationCollection.doc(uid).collection('Messages');
-    org_eventsCollection =
+    org_friendsCollection =
         organizationCollection.doc(uid).collection('Orgnaization Friends');
   }
 

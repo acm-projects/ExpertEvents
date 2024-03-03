@@ -40,7 +40,7 @@ Future<void> main() async {
       'This is the ACM org description',
       'Profile picture url');
   await OrgDatabaseService('uid').addEvents(
-      'Build Night', 'Build Night description', 'Profile picture url insert');
+      'Build Night', 'Build rNight description', 'Profile picture url insert');
   await OrgDatabaseService('uid')
       .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
   await OrgDatabaseService('uid')
