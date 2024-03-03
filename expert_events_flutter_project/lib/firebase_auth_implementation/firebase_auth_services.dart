@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
 import '../../global/common/toast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FirebaseAuthService{
 
@@ -14,12 +15,14 @@ class FirebaseAuthService{
             return credential.user;
 
         } on FirebaseAuthException catch (e) {
-            print(e.message);
-            if (e.code == 'email-already-in-use'){
-                showToast(message: 'The email address is already in use.');
-            } else {
-                showToast(message: 'An error occured: ${e.code}');
-            }
+            print(e.code);
+
+            // Shows the issue with the entered password on the users screen as a small message, this isn't working tho
+            // if (e.code == 'email-already-in-use'){
+            //     showToast(message: 'The email address is already in use.');
+            // } else {
+            //     showToast(message: 'An error occured: ${e.code}');
+            // }
 
         }
         return null;
@@ -33,11 +36,14 @@ class FirebaseAuthService{
             return credential.user;
 
         } on FirebaseAuthException catch (e) {
-             if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-                showToast(message: 'Invalid email or password.');
-            } else {
-                showToast(message: 'An error occurred: ${e.code}');
-            }
+            print (e.code);
+
+            //Again, shows issue with password on users screen, but the frontend isn't working
+            // if (e.code == 'user-not-found' || e.code == 'wrong-password') { 
+            //     showToast(message: 'Invalid email or password.');
+            // } else {
+            //     showToast(message: 'An error occurred: ${e.code}');
+            // }
         }
         return null;
     }
