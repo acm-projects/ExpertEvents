@@ -1,84 +1,162 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'model/friend_model.dart';
+import 'package:myapp/requestPage.dart';
 
-class FriendsPage extends StatelessWidget {
+class FriendsPage extends StatefulWidget {
   FriendsPage({super.key});
 
-  static List<FriendModel> friend_list = [
-    FriendModel("Shruti", 100, "Frontend"),
-    FriendModel("Nadeeba", 100, "Project Manager"),
-    FriendModel("Charu", 100, "Backend"),
-    FriendModel("Dhruv", 100, "Frontend"),
-    FriendModel("Sifat", 100, "Fullstack"),
-    FriendModel("Seeyan", 100, "Backend"),
+  @override
+  _FriendsPageState createState() => _FriendsPageState();
+}
+
+class _FriendsPageState extends State<FriendsPage> {
+  final TextEditingController _textController =
+  TextEditingController(text: 'Search here');
+
+  List<String> allFriends = [
+    "Dhruv Tripathi",
+    "Shruti Gupta",
+    "Charu Yuvaraja",
+    "Sifat Islam",
+    "Seeyan Shabbar Gaus Newaz",
+    "Nadeeba Atiqui",
+    "Millie Bobby Brown",
+    "Charles Darwin",
+    "Abraham Lincoln",
   ];
 
-  final List<FriendModel> display_list = List.from(friend_list);
+  List<String> displayedFriends = [];
 
-  void updateList(String value) {}
+  @override
+  void initState() {
+    super.initState();
+    displayedFriends.addAll(allFriends);
+  }
+
+  void _searchFriends(String searchText) {
+    setState(() {
+      if (searchText.isEmpty) {
+        displayedFriends.clear();
+        displayedFriends.addAll(allFriends);
+      } else {
+        displayedFriends.clear();
+        displayedFriends.addAll(allFriends
+            .where((friend) =>
+            friend.toLowerCase().contains(searchText.toLowerCase()))
+            .toList());
+      }
+    });
+  }
+
+  Widget _buildAvatar(String fullName) {
+    // Return the widget containing the avatar and name
+    return Row(
+      //avatar and name on the left
+      children: [
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: CircleAvatar(
+            radius: 26,
+            backgroundColor: Colors.blue,
+            child: Text(fullName.isNotEmpty ? fullName[0] : ''),
+          ),
+        ),
+        Text(
+          fullName,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  int? groupValue = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Friends"),
         backgroundColor: Colors.grey,
+        title: Text('Your Friends'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Search for your friends",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+            /* Cupertino Sliding Segmented Control */
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(10),
+              child: CupertinoSlidingSegmentedControl<int>(
+                padding: EdgeInsets.all(4),
+                groupValue: groupValue,
+                children: {
+                  0: buildSegment('Your Friends'),
+                  1: buildSegment("Requests"),
+                },
+                onValueChanged: (groupValue) {
+                  setState(() => this.groupValue = groupValue);
+                  if (groupValue == 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RequestPage()),
+                    );
+                  }
+                },
               ),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
-            TextField(
-              style: TextStyle(
-                color: Colors.white,
-              ),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xff302360),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none,
-                ),
-                hintText: "eg: Milly Bob Brown",
-                prefixIcon: Icon(Icons.search),
-                prefixIconColor: Colors.purple.shade900,
-              ),
-            ),
-            SizedBox(height: 20.0,),
-            Expanded(
-              child: ListView.builder(
-                itemCount: display_list.length,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text(
-                    display_list[index].name!,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+            /* ---------------------------------- */
+            GestureDetector(
+              onTap: () {
+                // When tapped, give focus to the text field
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Column(
+                children: [
+                  Container(
+                    color: CupertinoColors.systemOrange,
+                    padding: const EdgeInsets.all(10.0),
+                    child: Center(
+                      child: CupertinoTextField(
+                        controller: _textController,
+                        onChanged: _searchFriends,
+                        placeholder: 'Search here',
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        prefix: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(Icons.search),
+                        ),
+                      ),
                     ),
                   ),
-                  subtitle: Text('${display_list[index].age!}',
-                  style: TextStyle(
-                    color: Colors.black,
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: displayedFriends.length,
+                    itemBuilder: (context, index) {
+                      return _buildAvatar(displayedFriends[index]);
+                    },
                   ),
-                  ),
-                ),
+                ],
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildSegment(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 15,
         ),
       ),
     );
