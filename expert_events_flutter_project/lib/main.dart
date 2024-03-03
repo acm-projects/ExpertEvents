@@ -1,51 +1,104 @@
-//some packages that we need
-import 'package:flutter/cupertino.dart';
+import 'package:myapp/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/login.dart';
 
-//main runApp
-void main() => runApp(Home());
+void main() {
+  runApp(MaterialApp(
+    home: Home(),
+  ));
+}
 
 class Home extends StatelessWidget {
+
+  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
+    /*
     return MaterialApp(
-      home: LoginPage(),
+      home: SignUp(),
+    );*/
+    //just made a random home screen before moving into sign up page
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Column(
+                    children: <Widget>[
+                      Text(
+                        "Welcome to Expert Events!",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ]
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  child: Image.asset("assets/ExpertEventsLogo.png"),
+                ),
+                Column(
+                  children: <Widget>[
+                    MaterialButton(
+                      minWidth: double.infinity,
+                      height: 60,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                      },
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: Colors.black
+                          ),
+                          borderRadius: BorderRadius.circular(50)
+                      ),
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    MaterialButton(
+                      minWidth: double.infinity,
+                      height: 60,
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+                      },
+                      color: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                              color: Colors.black
+                          ),
+                          borderRadius: BorderRadius.circular(50)
+                      ),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ]
+          ),
+        ),
+      ),
     );
   }
 }
-/*
-//need for sliding bar
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-//The other page (sign up page)
-class AnotherPage extends StatelessWidget {
-  const AnotherPage({super.key});
-
-  @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold (
-      appBar: AppBar(
-        title: const Text("Another page"),
-      ),
-      body: const Center(
-        child: Text("This is another page"),
-      ),
-    );
-  }
-
-  //Need this for some reason :/
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
-}
-*/
-
