@@ -1,11 +1,50 @@
-import 'package:flutter/material.dart';
+import 'package:expert_events_flutter_project/models/org.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutterfire_cli/flutterfire_cli.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
 
-void main() {
+const firebaseConfig = {
+  'apiKey': 'AIzaSyDETWQoioLp4Db5Io5UOMHYDXuII5Lwi6Q',
+  'authDomain': 'expertevents-7bbc6.firebaseapp.com',
+  'projectId': 'expertevents-7bbc6',
+  'storageBucket': 'expertevents-7bbc6.appspot.com',
+  'messagingSenderId': '871374619509',
+  'appId': '1:871374619509:web:0f4b1b1f0b3bbe1d41893c',
+  'measurementId': 'G-VF7EVZYBFH',
+};
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+    apiKey: firebaseConfig['apiKey']!,
+    authDomain: firebaseConfig['authDomain']!,
+    projectId: firebaseConfig['projectId']!,
+    storageBucket: firebaseConfig['storageBucket']!,
+    messagingSenderId: firebaseConfig['messagingSenderId']!,
+    appId: firebaseConfig['appId']!,
+    measurementId: firebaseConfig['measurementId']!,
+  ));
+
   runApp(const MyApp());
+
+  await OrgDatabaseService('uid').updateOrganizationData(
+      'ACM',
+      'acm@utdallas.edu',
+      'This is the ACM org description',
+      'Profile picture url');
+  await OrgDatabaseService('uid').addEvents(
+      'Build Night', 'Build Night description', 'Profile picture url insert');
+  await OrgDatabaseService('uid')
+      .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
+  await OrgDatabaseService('uid')
+      .addOrgFriends('Friend specific doc id for refference');
 }
 
 class MyApp extends StatelessWidget {
