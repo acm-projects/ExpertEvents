@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:expert_events_flutter_project/main.dart';
 import 'package:expert_events_flutter_project/login.dart';
 
 class SignUp extends StatelessWidget {
@@ -14,7 +15,9 @@ class SignUp extends StatelessWidget {
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 247, 244, 244),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: Icon(Icons.arrow_back,
           size: 20,
           color: Colors.black),
