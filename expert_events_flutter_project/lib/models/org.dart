@@ -54,7 +54,7 @@ class OrgDatabaseService {
   }
 
   Future addOrgFriends(String friendsDoc) async {
-    await org_eventsCollection.add({
+    await org_friendsCollection.add({
       'FriendsDoc': friendsDoc,
     });
   }
