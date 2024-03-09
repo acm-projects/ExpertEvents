@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height / 2,
-                  child: Image.asset("assets/ExpertEventsLogo.png"),
+                  child: Image.asset("assets/experteventslogo.jpg"),
                 ),
                 Column(
                   children: <Widget>[
