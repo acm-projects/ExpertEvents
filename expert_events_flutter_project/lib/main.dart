@@ -1,6 +1,6 @@
-import 'package:expert_events_flutter_project/signup.dart';
+import 'signup.dart';
 import 'package:flutter/material.dart';
-import 'package:expert_events_flutter_project/login.dart';
+import 'login.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -43,8 +43,8 @@ class Home extends StatelessWidget {
                   ]
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height / 2,
-                  child: Image.asset("assets/ExpertEventsLogo.png"),
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: Image.asset("assets/ExpertEventsLogo.jpg"),
                 ),
               Column(
                 children: <Widget>[
@@ -52,8 +52,9 @@ class Home extends StatelessWidget {
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                     },
+                    color: Colors.black,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
                         color: Colors.black
@@ -65,6 +66,7 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
                   ),

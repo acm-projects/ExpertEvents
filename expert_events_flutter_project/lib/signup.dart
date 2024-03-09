@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:expert_events_flutter_project/main.dart';
-import 'package:expert_events_flutter_project/login.dart';
+import './mytextfield.dart';
+import 'login.dart';
+
+//import 'package:expert_events_flutter_project/login.dart';
 
 class SignUp extends StatelessWidget {
 
-  UserType userType = UserType.user; //sets the user type as individual to default
+  final UserType userType = UserType.user; //sets the user type as individual to default
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repasswordController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +25,12 @@ class SignUp extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back,
-          size: 20,
-          color: Colors.black),
-        ), 
+              size: 20,
+              color: Colors.black),
+        ),
       ),
       body: SingleChildScrollView(
+        
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
           width: double.infinity,
@@ -32,28 +39,69 @@ class SignUp extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
+                Image.asset(
+                  'assets/ExpertEventsLogo.jpg',
+                  width: 100,
+                ),
+                const SizedBox(height: 35),
                   Text("Sign Up for Expert Events",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),),
-                 SizedBox(height: 20),
-                 Text("Create an account!", 
-                 style: TextStyle( 
-                  fontSize: 17,
-                  color: Colors.grey,
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  SizedBox(height: 20),
+                  Text("Create an account!",
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.grey,
+                    ),
                   ),
-                 ), 
                 ],
               ),
               SizedBox(height: 20),
-              Column(
-                children: <Widget>[
-                  InputText(label: "Username"),
-                  InputText(label: "Email"),
-                  InputText(label: "Password", obscureText: true),
-                  InputText(label: "Confirm Password", obscureText: true),
-                
+          Padding(
+            padding: EdgeInsets.all(0),
+            child: Column(
+              children: [
+                Padding(
+      padding: EdgeInsets.all(0),
+      child: MyTextField(
+        controller: emailController,
+        hintText: 'Email',
+        obscureText: false,
+      ),
+    ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: false,
+                  ),
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: repasswordController,
+                    hintText: 'Confirm Password',
+                    obscureText: false,
+                  ),
+                ),
+              ],
+            ),
+
+        //<Widget>[
+                //   InputText(label: "Username"),
+                //   InputText(label: "Email"),
+                //   InputText(label: "Password", obscureText: true),
+                //   InputText(label: "Confirm Password", obscureText: true),
+
                   //ALLOWS USERS TO REGISTER AS AN ORGANIZATION OR AN INDIVIDUAL
                   /*ListTile(
                   title: Text('Register as:'),
@@ -84,11 +132,11 @@ class SignUp extends StatelessWidget {
                   ],
                 ),
               ),*/
-              ],
+               // ],
               ),
               SizedBox(height: 30),
               Container(
-                child: MaterialButton( 
+                child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {},
@@ -99,7 +147,7 @@ class SignUp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                     color: Colors.white,
-                    ),
+                  ),
                   ),
                 ),
               ),
@@ -110,10 +158,10 @@ class SignUp extends StatelessWidget {
                   Text('Already a member? '),
                   GestureDetector(
                     onTap: () {
-                    // Navigate to the LogIn page when pressed
+                      // Navigate to the LogIn page when pressed
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LogIn()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                     child: Text(
@@ -148,17 +196,17 @@ Widget InputText({label, obscureText = false})
           fontSize: 15,
         ),
         decoration: InputDecoration(
-          hintText: label,
-          contentPadding: EdgeInsets.symmetric(vertical: 0,
-          horizontal: 10),
-          enabledBorder: OutlineInputBorder( 
-            borderSide: BorderSide( 
-              color: Colors.grey
+            hintText: label,
+            contentPadding: EdgeInsets.symmetric(vertical: 0,
+                horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Colors.grey
+              ),
             ),
-          ),
-          border: OutlineInputBorder( 
-            borderSide: BorderSide(color: Color.fromARGB(255, 162, 86, 86))
-          )
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Color.fromARGB(255, 162, 86, 86))
+            )
         ),
       ),
       SizedBox(height: 10,)
