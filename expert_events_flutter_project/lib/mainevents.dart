@@ -3,7 +3,7 @@ import 'package:like_button/like_button.dart';
 import 'package:myapp/signup.dart';
 
 import 'friendsPage.dart';
-import 'login.dart';
+import 'notificationsPage.dart';
 
 class MainEvents extends StatelessWidget {
   const MainEvents({Key? key}) : super(key: key);
@@ -80,8 +80,8 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
+              icon: Icon(Icons.search),
+            label: "Notifications",
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
             case 1:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => NotificationsPage()),
               );
               break;
             case 2:
@@ -152,6 +152,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(16.0),
             child: Row(
               children: [
+                SizedBox(width: 10),
                 LikeButton(
                   isLiked: isHeartClicked[id] ?? false,
                   onTap: (bool isLiked) {
@@ -175,6 +176,21 @@ class _HomePageState extends State<HomePage> {
                     color: isBellClicked[id] ?? false ? Colors.yellow : null,
                   ),
                 ),
+                SizedBox(width: 15),
+                TextButton(
+                  onPressed: () {
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  child: Text(
+                    "Remind Me",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
                 Spacer(),
                 Icon(
                   Icons.share,
@@ -185,28 +201,30 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
 
+
+
         //for remind me button
-        Container(
-          padding: EdgeInsets.all(20.0),
-          color: Colors.blue,
-          child: Row(
-            children: [
-              Text(
-                "Remind me",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(width: 5), // Add space between text and icon
-              Icon(
-                Icons.keyboard_arrow_right,
-                color: Colors.white, // Optionally, set icon color
-              ),
-            ],
-          ),
-        ),
+        // Container(
+        //   padding: EdgeInsets.all(20.0),
+        //   color: Colors.blue,
+        //   child: Row(
+        //     children: [
+        //       Text(
+        //         "Remind me",
+        //         style: TextStyle(
+        //           color: Colors.white,
+        //           fontSize: 17,
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //       ),
+        //       SizedBox(width: 5), // Add space between text and icon
+        //       Icon(
+        //         Icons.keyboard_arrow_right,
+        //         color: Colors.white, // Optionally, set icon color
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
