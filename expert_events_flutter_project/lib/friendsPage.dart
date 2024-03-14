@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/requestPage.dart';
 
 class FriendsPage extends StatefulWidget {
-  const FriendsPage({super.key});
+  FriendsPage({super.key});
 
   @override
   _FriendsPageState createState() => _FriendsPageState();

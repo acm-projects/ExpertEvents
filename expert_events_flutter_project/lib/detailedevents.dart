@@ -38,8 +38,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
         color: Colors.black,
       ),
     ),
-    title: Center(
-      child: Text(
+  centerTitle: true,
+    title: Text(
         widget.eventName, //name of the event
         style: TextStyle(
           color: Colors.black,
@@ -47,7 +47,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      )
       
       
         
@@ -99,7 +98,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       borderRadius: BorderRadius.circular(50)
                     ),
                     child: Text(
-                      "Remind Me",
+                      "I'm Interested",
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 15,

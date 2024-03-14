@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import './mytextfield.dart';
 import 'login.dart';
 
 //import 'package:expert_events_flutter_project/login.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+
+class _SignUpState extends State<SignUp> {
+  int groupValue = 0;
 
   final UserType userType = UserType.user; //sets the user type as individual to default
 
@@ -119,12 +127,34 @@ class SignUp extends StatelessWidget {
               ],
             ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
+
+              CupertinoSlidingSegmentedControl<int>(
+                  padding: const EdgeInsets.all(0),
+                  groupValue: groupValue,
+                  children: {
+                    0: buildSegment('Student'),
+                    1: buildSegment('Organization'),
+                  },
+                  onValueChanged: (value) {
+                    setState(() {
+                      groupValue = value!;
+                    });
+                  },
+                ),
+
+                SizedBox(height: 10),
+
               Container(
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                  },
                   color: Color.fromARGB(255, 0, 0, 0),
                   elevation: 0,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -165,6 +195,14 @@ class SignUp extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildSegment(String text) => Container(
+    padding: const EdgeInsets.all(15),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 20),
+    ),
+  );
 }
 
 Widget InputText({label, obscureText = false})
@@ -197,6 +235,8 @@ Widget InputText({label, obscureText = false})
       SizedBox(height: 10,)
     ],
   );
+
+  
 }
 
 enum UserType {

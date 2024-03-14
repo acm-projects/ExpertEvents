@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import 'package:myapp/detailedevents.dart';
+import 'package:myapp/profile.dart';
 import 'signup.dart';
 
 import 'package:myapp/friendsPage.dart';
 
+import 'notificationspage.dart';
 import 'login.dart';
 
 class MainEvents extends StatelessWidget {
@@ -83,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: "Search",
+            label: "Notifications",
             backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
@@ -112,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             case 1:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => NotificationsPage()),
               );
               break;
             case 2:
@@ -124,7 +126,7 @@ class _HomePageState extends State<HomePage> {
             case 3:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignUp()),
+                MaterialPageRoute(builder: (context) => ProfilePage()),
               );
               break;
           }
@@ -163,10 +165,10 @@ class _HomePageState extends State<HomePage> {
         Container(
           color: Colors.grey.shade300,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(10.0),
             child: Row(
               children: [
-                LikeButton(
+                /*LikeButton(
                   isLiked: isHeartClicked[id] ?? false,
                   onTap: (bool isLiked) {
                     setState(() {
@@ -175,9 +177,9 @@ class _HomePageState extends State<HomePage> {
                     return Future.value(!isLiked);
                   },
                   animationDuration: Duration(milliseconds: 1000),
-                ),
+                ),*/
                 SizedBox(width: 5),
-                GestureDetector(
+                /*GestureDetector(
                   onTap: () {
                     setState(() {
                       isBellClicked[id] = !(isBellClicked[id] ?? false);
@@ -187,6 +189,20 @@ class _HomePageState extends State<HomePage> {
                     Icons.notifications,
                     size: 30.0,
                     color: isBellClicked[id] ?? false ? Colors.yellow : null,
+                  ),
+                ),*/
+                TextButton(
+                  onPressed: () {
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  child: Text(
+                    "I'm interested",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -200,7 +216,7 @@ class _HomePageState extends State<HomePage> {
         ),
 
         //for remind me button
-        Container(
+        /*Container(
           padding: EdgeInsets.all(20.0),
           color: Colors.blue,
           child: Row(
@@ -220,7 +236,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-        ),
+        ),*/
       ],
     );
   }
