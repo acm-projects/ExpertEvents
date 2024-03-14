@@ -19,12 +19,24 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 244, 244),
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 247, 244, 244),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back,
+              size: 20,
+              color: Colors.black),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
-                const SizedBox(height: 50),
                 Image.asset(
                   'assets/ExpertEventsLogo.jpg',
                   width: 100,

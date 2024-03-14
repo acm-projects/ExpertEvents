@@ -9,6 +9,8 @@ class SignUp extends StatelessWidget {
   final UserType userType = UserType.user; //sets the user type as individual to default
 
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController repasswordController = TextEditingController();
   
@@ -63,6 +65,27 @@ class SignUp extends StatelessWidget {
             padding: EdgeInsets.all(0),
             child: Column(
               children: [
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: firstNameController, 
+                    hintText: 'First Name', 
+                    obscureText: false)
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: lastNameController, 
+                    hintText: 'Last Name', 
+                    obscureText: false)
+                ),
+
+                SizedBox(height: 10),
+
                 Padding(
       padding: EdgeInsets.all(0),
       child: MyTextField(
@@ -79,7 +102,7 @@ class SignUp extends StatelessWidget {
                   child: MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
-                    obscureText: false,
+                    obscureText: true,
                   ),
                 ),
 
@@ -90,49 +113,11 @@ class SignUp extends StatelessWidget {
                   child: MyTextField(
                     controller: repasswordController,
                     hintText: 'Confirm Password',
-                    obscureText: false,
+                    obscureText: true,
                   ),
                 ),
               ],
             ),
-
-        //<Widget>[
-                //   InputText(label: "Username"),
-                //   InputText(label: "Email"),
-                //   InputText(label: "Password", obscureText: true),
-                //   InputText(label: "Confirm Password", obscureText: true),
-
-                  //ALLOWS USERS TO REGISTER AS AN ORGANIZATION OR AN INDIVIDUAL
-                  /*ListTile(
-                  title: Text('Register as:'),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                    Radio(
-                      value: UserType.user,
-                      groupValue: userType,
-                      onChanged: (value) {
-                        setState(() {
-                          userType = value as UserType;
-                        });
-                      },
-                    ),
-                    Text('User'),
-                    Radio(
-                      value: UserType.organization,
-                      groupValue: userType,
-                      onChanged: (value) {
-                        setState(() {
-                          userType = value as UserType;
-                        });
-                      },
-                    ),
-                    Text('Organization'),
-                  ],
-                ),
-              ),*/
-               // ],
               ),
               SizedBox(height: 30),
               Container(
