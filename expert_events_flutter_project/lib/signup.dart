@@ -21,6 +21,7 @@ class SignUp extends StatelessWidget {
 
   final FirebaseAuthService _auth = FirebaseAuthService();
 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class SignUp extends StatelessWidget {
                   child: MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
-                    obscureText: false,
+                    obscureText: true,
                   ),
                 ),
 
@@ -91,7 +92,7 @@ class SignUp extends StatelessWidget {
                   child: MyTextField(
                     controller: repasswordController,
                     hintText: 'Confirm Password',
-                    obscureText: false,
+                    obscureText: true,
                   ),
                 ),
               ],
@@ -134,6 +135,7 @@ class SignUp extends StatelessWidget {
                   minWidth: double.infinity,
                   height: 60,
                   onPressed: () {
+                  
                     _signUp(); 
                     
                   },
@@ -185,10 +187,15 @@ class SignUp extends StatelessWidget {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
     
     if (user != null) {
+
       print("User is successfully signed up");
-      _createData(UserModel(
-          email: emailController.text,
-      )); //adds user to the database
+    
+      await UserModel(user.uid).createData(
+          emailController.text,
+      ); //adds user to the database
+
+      await UserModel(user.uid).addOrganization('oid1');
+      //await UserModel().createData
     }
     else{
       print("An error occured when trying to sign up user");
@@ -234,43 +241,6 @@ enum UserType {
   organization,
 }
 
-//USER DATABASE MODEL
 
-class UserModel{
 
-    final String? email;
-    //final String? username;
-    final String? id;
 
-    UserModel({this.id, this.email});
-
-    static UserModel fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot){
-        return UserModel(
-        //username: snapshot['username'],
-        email: snapshot['email'],
-        id: snapshot['id'],
-        );
-    }
-
-    Map<String, dynamic> toJson(){
-        return{
-            //"username": username,
-            "email": email,
-            "id": id,
-        };
-    }
-}
-
-void _createData(UserModel userModel){
-    final userCollection = FirebaseFirestore.instance.collection("Users");
-
-    String id = userCollection.doc().id; //generates random ID for document
-
-    final newUser = UserModel(
-        //username: userModel.username,
-        email: userModel.email,
-        id: id,
-    ).toJson();
-
-    userCollection.doc(id).set(newUser);
-}

@@ -8,6 +8,8 @@ import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../models/user.dart';
+
 
 
 
@@ -23,8 +25,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.web,
   );
+
   runApp(Home());
-  
 } 
 
 //main runApp

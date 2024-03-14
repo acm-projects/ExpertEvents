@@ -8,6 +8,7 @@ import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import '../firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../models/user.dart';
 
 //C: changed this to statefulwidget
 class LoginPage extends StatelessWidget
@@ -189,11 +190,51 @@ class LoginPage extends StatelessWidget
     User? user = await _auth.signInWithEmailAndPassword(email, password);
     
     if (user != null) {
+
+      //TEST ADD ORG
+      await UserModel(user.uid).addOrganization('ACM.id');
+      //TEST ADD FRIEND
+      await UserModel(user.uid).addFriend('Sam.id');
+      //TEST ADD MESSAGE
+      await UserModel(user.uid).addMessage('abc.id');
+      //TEST ADD EVENT
+      await UserModel(user.uid).addEvent('ACMOrientation.id');
+      
       print("User is successfully signed in");
     }
     else{
       print("An error occured when trying to sign in user");
     }
-
   }
+
+//LOG IN WITH GOOGLE 
+
+// _signInWithGoogle()async{
+
+//     final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+//     try {
+
+//       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+
+//       if(googleSignInAccount != null ){
+//         final GoogleSignInAuthentication googleSignInAuthentication = await
+//         googleSignInAccount.authentication;
+
+//         final AuthCredential credential = GoogleAuthProvider.credential(
+//           idToken: googleSignInAuthentication.idToken,
+//           accessToken: googleSignInAuthentication.accessToken,
+//         );
+
+//         await _firebaseAuth.signInWithCredential(credential);
+//         //Navigator.pushNamed(context, "/home");
+//       }
+
+//     }catch(e) {
+//       showToast(message: "some error occured $e");
+//     }
+
+
+//   }
+
 }
