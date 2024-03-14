@@ -9,6 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 import '../firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 //C: changed this to statefulwidget
 class LoginPage extends StatelessWidget
@@ -19,6 +21,7 @@ class LoginPage extends StatelessWidget
   final TextEditingController passwordController = TextEditingController();
 
   final FirebaseAuthService _auth = FirebaseAuthService();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   //for sliding bar
   Widget build(BuildContext context) {
@@ -231,7 +234,7 @@ class LoginPage extends StatelessWidget
 //       }
 
 //     }catch(e) {
-//       showToast(message: "some error occured $e");
+//       print("some error occured $e");
 //     }
 
 

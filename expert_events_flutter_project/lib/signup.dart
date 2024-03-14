@@ -16,6 +16,8 @@ class SignUp extends StatelessWidget {
   final UserType userType = UserType.user; //sets the user type as individual to default
 
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController repasswordController = TextEditingController();
 
@@ -47,6 +49,11 @@ class SignUp extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
+                   Image.asset(
+                  'assets/ExpertEventsLogo.jpg',
+                  width: 100,
+                ),
+                const SizedBox(height: 35),
                   Text("Sign Up for Expert Events",
                     style: TextStyle(
                       fontSize: 25,
@@ -66,6 +73,26 @@ class SignUp extends StatelessWidget {
             padding: EdgeInsets.all(0),
             child: Column(
               children: [
+                 Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: firstNameController, 
+                    hintText: 'First Name', 
+                    obscureText: false)
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: EdgeInsets.all(0),
+                  child: MyTextField(
+                    controller: lastNameController, 
+                    hintText: 'Last Name', 
+                    obscureText: false)
+                ),
+
+                SizedBox(height: 10),
+
                 Padding(
                   padding: EdgeInsets.all(0),
                   child: MyTextField(
@@ -191,7 +218,10 @@ class SignUp extends StatelessWidget {
       print("User is successfully signed up");
     
       await UserModel(user.uid).createData(
+          firstNameController.text,
+          lastNameController.text,
           emailController.text,
+          
       ); //adds user to the database
 
       await UserModel(user.uid).addOrganization('oid1');

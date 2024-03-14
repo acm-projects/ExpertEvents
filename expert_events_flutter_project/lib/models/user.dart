@@ -25,9 +25,12 @@ class UserModel{
      
     }
     
-    Future createData(String email) async{
+    Future createData(String fName, String lName, String email) async{
         return await userCollection.doc(id).set({
+            'First Name': fName,
+            'Last Name': lName,
             'Email': email,
+
         });
     }
 
