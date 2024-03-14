@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
+import 'package:myapp/profile.dart';
 import 'package:myapp/signup.dart';
 
 import 'friendsPage.dart';
@@ -122,7 +123,7 @@ class _HomePageState extends State<HomePage> {
             case 3:
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SignUp()),
+                MaterialPageRoute(builder: (context) => ProfilePage()),
               );
               break;
           }
@@ -153,30 +154,29 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 SizedBox(width: 10),
-                LikeButton(
-                  isLiked: isHeartClicked[id] ?? false,
-                  onTap: (bool isLiked) {
-                    setState(() {
-                      isHeartClicked[id] = !(isHeartClicked[id] ?? false);
-                    });
-                    return Future.value(!isLiked);
-                  },
-                  animationDuration: Duration(milliseconds: 1000),
-                ),
+                // LikeButton(
+                //   isLiked: isHeartClicked[id] ?? false,
+                //   onTap: (bool isLiked) {
+                //     setState(() {
+                //       isHeartClicked[id] = !(isHeartClicked[id] ?? false);
+                //     });
+                //     return Future.value(!isLiked);
+                //   },
+                //   animationDuration: Duration(milliseconds: 1000),
+                // ),
                 SizedBox(width: 5),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      isBellClicked[id] = !(isBellClicked[id] ?? false);
-                    });
-                  },
-                  child: Icon(
-                    Icons.notifications,
-                    size: 30.0,
-                    color: isBellClicked[id] ?? false ? Colors.yellow : null,
-                  ),
-                ),
-                SizedBox(width: 15),
+                // GestureDetector(
+                //   onTap: () {
+                //     setState(() {
+                //       isBellClicked[id] = !(isBellClicked[id] ?? false);
+                //     });
+                //   },
+                //   child: Icon(
+                //     Icons.notifications,
+                //     size: 30.0,
+                //     color: isBellClicked[id] ?? false ? Colors.yellow : null,
+                //   ),
+                // ),
                 TextButton(
                   onPressed: () {
                   },
@@ -184,9 +184,9 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                   ),
                   child: Text(
-                    "Remind Me",
+                    "I'm interested",
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 20,
                       color: Colors.white,
                     ),
                   ),
