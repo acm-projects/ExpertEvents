@@ -35,21 +35,21 @@ Future<void> main() async {
 
   runApp(const MyApp());
 
-  await OrgDatabaseService('UID 2').updateOrganizationData(
+  await OrgDatabaseService('Test Reevu 3').updateOrganizationData(
       'ACM',
       'acm@utdallas.edu',
       'This is the ACM org description',
       'Profile picture url');
-  await OrgDatabaseService('UID 2').addEvents(
+  await OrgDatabaseService('Test Reevu 3').addEvents(
       'SSO night',
       'SSO',
       'Study is gonnna happen!!!',
       'ECSW 2.320',
       'GUESDAY 8:30pm',
       'insert SSO poster url');
-  await OrgDatabaseService('UID 2')
+  await OrgDatabaseService('Test Reevu 3')
       .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
-  await OrgDatabaseService('UID 2')
+  await OrgDatabaseService('Test Reevu 3')
       .addOrgFriends('Friend specific doc id for refference');
 }
 

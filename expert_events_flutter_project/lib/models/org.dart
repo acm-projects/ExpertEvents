@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expert_events_flutter_project/models/events.dart';
 
@@ -17,6 +19,8 @@ class OrgDatabaseService {
     org_friendsCollection =
         organizationCollection.doc(uid).collection('Orgnaization Friends');
   }
+
+  String? get id => null;
 
   Future updateOrganizationData(String orgName, String orgEmail, String descrip,
       String profilePic) async {
@@ -39,7 +43,7 @@ class OrgDatabaseService {
       'Poster Link': poster,
     });
 
-    await DatabaseService('uid')
+    await DatabaseService(uid)
         .updateEventData(evName, orgName, descrip, location, time, poster);
   }
 
