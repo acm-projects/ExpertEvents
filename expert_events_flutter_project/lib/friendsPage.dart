@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/messagingpage.dart';
 import 'package:myapp/requestPage.dart';
 
 class FriendsPage extends StatefulWidget {
@@ -61,12 +62,19 @@ class _FriendsPageState extends State<FriendsPage> {
             child: Text(fullName.isNotEmpty ? fullName[0] : ''),
           ),
         ),
-        Text(
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MessagePage(recipient: fullName,)));
+          },
+        child: Text(
           fullName,
           style: TextStyle(
             fontSize: 18,
             color: Colors.black,
           ),
+        ),
         ),
       ],
     );
