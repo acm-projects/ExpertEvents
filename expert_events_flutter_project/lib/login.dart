@@ -9,6 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 import '../firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user.dart';
+import '../models/message.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -102,6 +103,10 @@ class LoginPage extends StatelessWidget
                       onPressed: () {
                         //stuff happens when the button is pressed (leads to main page)
                         _signIn();
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MainEvents()),
+                      );
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(25),
@@ -194,16 +199,18 @@ class LoginPage extends StatelessWidget
     
     if (user != null) {
 
-      //TEST ADD ORG
-      await UserModel(user.uid).addOrganization('ACM.id');
-      //TEST ADD FRIEND
-      await UserModel(user.uid).addFriend('Sam.id');
-      //TEST ADD MESSAGE
-      await UserModel(user.uid).addMessage('abc.id');
-      //TEST ADD EVENT
-      await UserModel(user.uid).addEvent('ACMOrientation.id');
+      //TEST USER MODEL METHODS
+      // await UserModel(user.uid).addOrganization('ACM.id');
+      
+      // await UserModel(user.uid).addFriend('Sam.id');
+      
+      // await MessageModel(user.uid, '8QVaaI8drUVwBwLIuAOZWuzzDJs2').addMessage('Hello!');
+      
+      // await UserModel(user.uid).addEvent('ACMOrientation.id');
       
       print("User is successfully signed in");
+
+      
     }
     else{
       print("An error occured when trying to sign in user");

@@ -1,53 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:like_button/like_button.dart';
+import 'detailedevents.dart';
+import 'profile.dart';
+import 'signup.dart';
 
-// class Events extends StatelessWidget {
-//   const Events({super.key});
-//
-//   @override
-//   Widget build(BuildContext context)
-//   {
-//     return Scaffold (
-//       appBar: AppBar(
-//       ),
-//       body: const Center(
-//         child: Text("This is another page"),
-//       ),
-//     );
-//   }
-//
-//   //Need this for some reason :/
-//   State<StatefulWidget> createState() {
-//     // TODO: implement createState
-//     throw UnimplementedError();
-//   }
-// }
+import 'friendsPage.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+import 'notificationspage.dart';
+import 'login.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import '../firebase_auth_implementation/firebase_auth_services.dart';
+import '../models/user.dart';
+import '../services/userdb_services.dart';
+
+class MainEvents extends StatelessWidget {
+  const MainEvents({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context)
-  {
-    return const MaterialApp(
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'App Bar Demo',
+      title: 'Main events page',
       home: HomePage(),
     );
-    // TODO: implement build
   }
 }
 
-class HomePage extends StatefulWidget{
-  const HomePage({
-    Key? key,
-}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>{
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  Map<String, bool> isHeartClicked = {};
+  Map<String, bool> isBellClicked = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,138 +48,240 @@ class _HomePageState extends State<HomePage>{
         title: const Text("Main Events"),
         centerTitle: true,
         leading: Padding(
-          padding: EdgeInsets.only(left: 10.0), // Adjust the left padding as needed
+          padding: EdgeInsets.only(left: 10.0),
           child: IconButton(
-            onPressed: (){},
-            icon: Image.asset('assets/experteventslogo.jpg'),
+            onPressed: () {},
+            icon: Image.asset('assets/ExpertEventsLogo.jpg'),
           ),
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 10.0), // Adjust the right padding as needed
+            padding: EdgeInsets.only(right: 10.0),
             child: IconButton(
-              onPressed: (){},
-              icon: Icon(Icons.add), // Example icon, replace it with your desired icon
+              onPressed: () {},
+              icon: Icon(Icons.add),
             ),
           ),
         ],
       ),
-
-      //Acm logo container
-      body:
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              color: Colors.grey.shade400,
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(left: 2.0, right: 8.0, top: 10.0, bottom: 5.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 2.0,
-                      ),
-                      shape: BoxShape.circle,
-                    ),// Adjust padding as needed
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey.shade100,
-                      radius: 25,
-                      backgroundImage: AssetImage("assets/acmutd_logo.jpg"),
-                      foregroundImage: AssetImage("assets/acmutd_logo.jpg"),
-                    ),
-                    width: 60, // Replace Icons.star with the desired icon
-                  ),
-                  Text(
-                    "ACM",
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ],
-              ),
-            ),
+            _buildLogoAndName("assets/acmutd_logo.jpg", "ACM"),
+            _buildPoster("assets/acm_poster.jpg", 'acm'),
 
-            Container(
-              height: 400,
-              child: Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/acm_poster.jpg'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      color: Colors.blue,
-                      height: 143,
-                      width: 200,
-                      child: Padding(
-                        padding: EdgeInsets.all(31),
-                        child: Text("Date: 2/2/2024\n"
-                            "Time: 7:30 PM\n"
-                            "Location: ECSS 2.415"),
-                      ),
-                    ),
-
-                    Container(
-                      color: Colors.purple,
-                      height: 143,
-                      width: 211,
-                      child: IconButton(
-                        onPressed: (){},
-                        icon: Icon(
-                          Icons.notifications,
-                          size: 70,
-                        ), // Using built-in bell icon
-                        color: Colors.white, // Adjust icon color as needed
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            _buildLogoAndName("assets/suaablogo.png", "SUAAB"),
+            _buildPoster("assets/SUAAB_poster.jpg", 'suaab'),
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.grey,
+        iconSize: 30,
+        unselectedFontSize: 15,
+        selectedFontSize: 16,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: "Home",
+            backgroundColor: Colors.black,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Notifications",
+            backgroundColor: Colors.red,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "My Friends",
+            backgroundColor: Colors.blue,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+            backgroundColor: Colors.pink,
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          // Navigate to the respective page based on the index
+          switch (_currentIndex) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificationsPage()),
+              );
+              break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FriendsPage()),
+              );
+              break;
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+              break;
+          }
+        },
+      ),
+    );
+  }
 
-      bottomNavigationBar:
-          Container(
-            color: Colors.black,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-              child: GNav(
-                gap: 8,
-                backgroundColor: Colors.black,
-                color: Colors.white,
-                activeColor: Colors.white,
-                tabBackgroundColor: Colors.grey.shade800,
-                padding: EdgeInsets.all(16),
-                tabs: const [
-                  GButton(icon:
-                  Icons.home,
-                      text: "Home"),
+  //Initializing variables to add the event to the userDatabase
+  String id = '';
 
-                  GButton(icon: Icons.favorite_border,
-                    text: "Likes",),
+  // Updated _buildPoster method to accept an additional parameter 'id'
+  Widget _buildPoster(String posterImage, String id) {
+    this.id = id;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        GestureDetector(
+          //IF YOU PRESS ON THE POSTER, YOU WILL GO TO THE MORE DETAILED EVENT PAGE; NEED TO UPDATE WITH SPECIFIC EVENT INFORMATION (FROM BACK END?)
+          onTap: () {
+            Navigator.push(context, 
+            MaterialPageRoute(builder: (context) => EventDetailPage(eventName: 'Event B)', eventDescription: 'This is a description of the event that the user pressed. Later on, this needs to be replaced with the description that the organization loads in. I think this will be done with information stored in back end :D', eventDate: 'Today :O', image: posterImage, location: 'ECSS 2.412')),
+            );
+          },
+          child: Padding(
+            padding: EdgeInsets.symmetric(),
+            child: Container(
+              height: 400,
+              decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(posterImage),
+                fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          )
+        ),
+        
+        // Contains code for the bell, heart, and share icons
+        Container(
+          color: Colors.grey.shade300,
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                /*LikeButton(
+                  isLiked: isHeartClicked[id] ?? false,
+                  onTap: (bool isLiked) {
+                    setState(() {
+                      isHeartClicked[id] = !(isHeartClicked[id] ?? false);
+                    });
+                    return Future.value(!isLiked);
+                  },
+                  animationDuration: Duration(milliseconds: 1000),
+                ),*/
+                SizedBox(width: 5),
+                /*GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isBellClicked[id] = !(isBellClicked[id] ?? false);
+                    });
+                  },
+                  child: Icon(
+                    Icons.notifications,
+                    size: 30.0,
+                    color: isBellClicked[id] ?? false ? Colors.yellow : null,
+                  ),
+                ),*/
+                TextButton(
+                  onPressed: () {
+                    final UsersService usersService = UsersService();
+                    //usersService.addEvent(id); //adds the eventID to the users' userEvents database collection
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                  ),
+                  child: Text(
+                    "I'm interested",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Icon(
+                  Icons.share,
+                  size: 30.0,
+                ),
+              ],
+            ),
+          ),
+        ),
 
-                  GButton(icon: Icons.search,
-                    text: 'Search',),
+        //for remind me button
+        /*Container(
+          padding: EdgeInsets.all(20.0),
+          color: Colors.blue,
+          child: Row(
+            children: [
+              Text(
+                "Remind me",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(width: 5), // Add space between text and icon
+              Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.white, // Optionally, set icon color
+              ),
+            ],
+          ),
+        ),*/
+      ],
+    );
+  }
 
-                  GButton(icon: Icons.settings,
-                    text: "Settings",),
-                ],
+
+  Widget _buildLogoAndName(String logoImage, String name) {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.black,
+                  width: 2.0,
+                ),
+                image: DecorationImage(
+                  image: AssetImage(logoImage),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
+          Text(
+            name,
+            style: TextStyle(fontSize: 25),
+          ),
+        ],
+      ),
     );
   }
 }
-

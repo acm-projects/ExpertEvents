@@ -9,9 +9,18 @@ import 'package:firebase_core/firebase_core.dart';
 import '../firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/user.dart';
+import '../models/message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import '../services/userdb_services.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  int groupValue = 0;
 
   final UserType userType = UserType.user; //sets the user type as individual to default
 
@@ -27,6 +36,15 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget buildSegment(String text) => Container(
+    padding: const EdgeInsets.all(15),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 20),
+    ),
+    );
+
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Color.fromARGB(255, 247, 244, 244),
@@ -157,6 +175,23 @@ class SignUp extends StatelessWidget {
                // ],
               ),
               SizedBox(height: 30),
+
+              CupertinoSlidingSegmentedControl<int>(
+                  padding: const EdgeInsets.all(0),
+                  groupValue: groupValue,
+                  children: {
+                    0: buildSegment('Student'),
+                    1: buildSegment('Organization'),
+                  },
+                  onValueChanged: (value) {
+                    setState(() {
+                      groupValue = value!;
+                    });
+                  },
+                ),
+
+                SizedBox(height: 10),
+
               Container(
                 child: MaterialButton(
                   minWidth: double.infinity,
@@ -164,7 +199,11 @@ class SignUp extends StatelessWidget {
                   onPressed: () {
                   
                     _signUp(); 
-                    
+                     Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+
                   },
                   color: Color.fromARGB(255, 0, 0, 0),
                   elevation: 0,
@@ -205,6 +244,7 @@ class SignUp extends StatelessWidget {
         ),
       ),
     );
+
   }
 
   void _signUp() async {
@@ -216,16 +256,14 @@ class SignUp extends StatelessWidget {
     if (user != null) {
 
       print("User is successfully signed up");
-    
-      await UserModel(user.uid).createData(
-          firstNameController.text,
-          lastNameController.text,
-          emailController.text,
-          
-      ); //adds user to the database
 
-      await UserModel(user.uid).addOrganization('oid1');
-      //await UserModel().createData
+      final UsersService usersService = UsersService();
+      User1 user = User1(
+        fName: firstNameController.text,
+        lName: lastNameController.text,
+        email: email);
+        usersService.addUser(user); //adds user to the database
+      
     }
     else{
       print("An error occured when trying to sign up user");

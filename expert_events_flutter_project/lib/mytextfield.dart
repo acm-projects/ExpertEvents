@@ -11,7 +11,7 @@ class MyTextField extends StatelessWidget
   final bool obscureText;
 
   //something is going on here but it's needed
-  const MyTextField({
+   MyTextField({
     Key? key,
     required this.controller,
     required this.hintText,

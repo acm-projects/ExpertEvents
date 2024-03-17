@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
 import '../../global/common/toast.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseAuthService{
 
@@ -48,5 +49,39 @@ class FirebaseAuthService{
         return null;
     }
 
+    //Method that gives the list of all existing users (including their info in the database)
+    Future<List<Map<String, dynamic>>> getUsers() async {
+        // Access the Firestore collection containing users
+        CollectionReference<Map<String, dynamic>> 
+            userCollection = FirebaseFirestore.instance.collection('Users');
+
+        // Retrieve all documents (users) from the collection
+        QuerySnapshot<Map<String, dynamic>> 
+            querySnapshot = await userCollection.get();
+
+        // Extract user data from QuerySnapshot and convert to List
+        List<Map<String, dynamic>> users = [];
+        querySnapshot.docs.forEach((doc) {
+            users.add(doc.data());
+        });
+
+        print(users);
+        return users;
+    }
+    //Here is the code to call this above function, this gives the users list 
+    //List<Map<String, dynamic>>? users = await _auth.getUsers() ?? null;
+    String getUserID() {
+    String userID = '';
+    User? user = _auth.currentUser;
+        if (user != null) {
+            userID = user.uid; //retrives userID of logged in user
+        }
+    return userID;
+    }
 }
+
+ 
+
+
+
 
