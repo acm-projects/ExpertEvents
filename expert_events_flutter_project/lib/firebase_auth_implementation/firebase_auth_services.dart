@@ -7,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseAuthService{
 
     FirebaseAuth _auth = FirebaseAuth.instance;
-
+    
     //User sign up
     Future<User?> signUpWithEmailAndPassword(String email, String password) async {
         

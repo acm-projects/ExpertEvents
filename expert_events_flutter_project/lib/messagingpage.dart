@@ -44,7 +44,8 @@ class _MessagePageState extends State<MessagePage> {
         _messageController.clear(); //clear the text field where the user types
       });
       //adds message to the database
-      //messagesService.addMessage(message);
+      Message1 dbMessage = Message1(text: messageText, sentTime: Timestamp.now());
+      messagesService.addMessages(dbMessage);
     }
   }
 
@@ -140,3 +141,4 @@ class MessageBubble extends StatelessWidget {
     );
   }
 }
+

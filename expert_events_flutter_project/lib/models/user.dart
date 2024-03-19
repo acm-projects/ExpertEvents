@@ -7,6 +7,7 @@ class User1 {
   String lName;
   String email;
 
+ 
   User1({
     required this.fName,
     required this.lName,
