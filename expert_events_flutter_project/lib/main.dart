@@ -6,6 +6,7 @@ import 'package:flutterfire_cli/flutterfire_cli.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
 import 'package:expert_events_flutter_project/models/events.dart';
+import 'package:expert_events_flutter_project/calender.dart';
 
 const firebaseConfig = {
   'apiKey': 'AIzaSyDETWQoioLp4Db5Io5UOMHYDXuII5Lwi6Q',
@@ -165,7 +166,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CalenderPage()));
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
