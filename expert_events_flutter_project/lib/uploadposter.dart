@@ -1,11 +1,16 @@
 
+
+
+
+
 import 'dart:io';
 import 'events.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:myapp/mytextfield.dart';
+import 'mytextfield.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+final TextEditingController eventNameController = TextEditingController();
 final TextEditingController descriptionController = TextEditingController();
 final TextEditingController dateController = TextEditingController();
 final TextEditingController timeController = TextEditingController();
@@ -27,7 +32,6 @@ class _UploadPoster extends State<UploadPoster> {
   setState(() {
     if (pickedImage != null) {
       _imageFile = File(pickedImage.path);
-      _uploadImageToFirebase();
     } else {
       print('No image selected.');
     }
@@ -50,21 +54,20 @@ Future<void> _uploadImageToFirebase() async {
     // Get the download URL of the uploaded image
     final String downloadURL = await storageRef.getDownloadURL();
 
-    await DatabaseService(uid).updateEventData(
+    await DatabaseService(eventNameController.text).updateEventData(
+      eventNameController.text,
       descriptionController.text,
       dateController.text,
       timeController.text,
       locationController.text,
       downloadURL, // Image URL
     );
-
-
-  
-    print('Image uploaded to Firebase Storage: $downloadURL');
+  print('Image uploaded to Firebase Storage: $downloadURL');
   } catch (e) {
     print('Error uploading image to Firebase Storage: $e');
   }
 }
+
 
 Widget _buildUploadButton() {
   return ElevatedButton(
@@ -123,6 +126,19 @@ Widget build(BuildContext context) {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
                 child: MyTextField(
+                controller: eventNameController, 
+                hintText: 'Event Name', 
+                obscureText: false
+              ),
+            ),
+
+            SizedBox(
+              height: 15
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+                child: MyTextField(
                 controller: descriptionController, 
                 hintText: 'Event Description', 
                 obscureText: false
@@ -166,12 +182,24 @@ Widget build(BuildContext context) {
                 obscureText: false,
               ),
             ),
+
             SizedBox(
               height: 15
             ),
+
+            ElevatedButton(
+    onPressed: _uploadImageToFirebase,
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [ 
+        Text("Upload Event"),
+        ],
+        ),
+  )
         ],
       ),
     ),
   );
 }
 }
+

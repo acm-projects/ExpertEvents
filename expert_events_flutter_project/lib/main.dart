@@ -6,6 +6,7 @@ import 'package:flutterfire_cli/flutterfire_cli.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
 import 'org.dart';
+import 'uploadposter.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +31,11 @@ Future<void> main() async{
       .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
   await OrgDatabaseService('test4')
       .addOrgFriends('Friend specific doc id for refference');
-runApp(const MyApp());
+//runApp(const MyApp());
+
+  runApp(MaterialApp(
+    home: UploadPoster(),
+  ));
 }
 void test() {
   // DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');

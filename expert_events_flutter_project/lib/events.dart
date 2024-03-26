@@ -11,7 +11,7 @@ class DatabaseService {
 
 
   Future updateEventData( String evName, String orgName, String descrip, String location, String time, String poster) async {
-    return await eventCollection.doc(uid).set ({
+    return await eventCollection.doc(evName).set ({
       'Event Name' : evName,
       'Organization' : orgName,
       'Description' : descrip,
