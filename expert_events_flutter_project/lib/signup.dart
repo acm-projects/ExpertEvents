@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/mytextfield.dart';
+import 'package:flutter/cupertino.dart';
+import './mytextfield.dart';
 import 'login.dart';
 
 //import 'package:expert_events_flutter_project/login.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
+  @override
+  _SignUpState createState() => _SignUpState();
+}
+
+
+class _SignUpState extends State<SignUp> {
+  int groupValue = 0;
 
   final UserType userType = UserType.user; //sets the user type as individual to default
 
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController repasswordController = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +31,16 @@ class SignUp extends StatelessWidget {
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 247, 244, 244),
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: Icon(Icons.arrow_back,
               size: 20,
               color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
+
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 30),
           width: double.infinity,
@@ -36,109 +49,123 @@ class SignUp extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
+                  Image.asset(
+                    'assets/ExpertEventsLogo2.png',
+                    width: 100,
+                  ),
+                  const SizedBox(height: 20),
                   Text("Sign Up for Expert Events",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),),
                   SizedBox(height: 20),
-                  Text("Create an account!",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.grey,
-                    ),
-                  ),
                 ],
               ),
-              SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.all(0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(0),
-                  child: MyTextField(
-                    controller: emailController,
-                    hintText: 'Email',
-                    obscureText: false,
-                  ),
-                ),
+              Padding(
+                padding: EdgeInsets.all(0),
+                child: Column(
+                  children: [
 
-                SizedBox(height: 10),
-
-                Padding(
-                  padding: EdgeInsets.all(0),
-                  child: MyTextField(
-                    controller: passwordController,
-                    hintText: 'Password',
-                    obscureText: false,
-                  ),
-                ),
-
-                SizedBox(height: 10),
-
-                Padding(
-                  padding: EdgeInsets.all(0),
-                  child: MyTextField(
-                    controller: repasswordController,
-                    hintText: 'Confirm Password',
-                    obscureText: false,
-                  ),
-                ),
-              ],
-            ),
-
-        //<Widget>[
-                //   InputText(label: "Username"),
-                //   InputText(label: "Email"),
-                //   InputText(label: "Password", obscureText: true),
-                //   InputText(label: "Confirm Password", obscureText: true),
-
-                  //ALLOWS USERS TO REGISTER AS AN ORGANIZATION OR AN INDIVIDUAL
-                  /*ListTile(
-                  title: Text('Register as:'),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                    Radio(
-                      value: UserType.user,
-                      groupValue: userType,
-                      onChanged: (value) {
-                        setState(() {
-                          userType = value as UserType;
-                        });
-                      },
+                    Padding(
+                        padding: EdgeInsets.all(0),
+                        child: MyTextField(
+                            controller: firstNameController,
+                            hintText: 'First Name',
+                            obscureText: false)
                     ),
-                    Text('User'),
-                    Radio(
-                      value: UserType.organization,
-                      groupValue: userType,
-                      onChanged: (value) {
-                        setState(() {
-                          userType = value as UserType;
-                        });
-                      },
+
+                    SizedBox(height: 10),
+
+                    Padding(
+                        padding: EdgeInsets.all(0),
+                        child: MyTextField(
+                            controller: lastNameController,
+                            hintText: 'Last Name',
+                            obscureText: false)
                     ),
-                    Text('Organization'),
+
+                    SizedBox(height: 10),
+
+                    Padding(
+                      padding: EdgeInsets.all(0),
+                      child: MyTextField(
+                        controller: emailController,
+                        hintText: 'Email',
+                        obscureText: false,
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Padding(
+                      padding: EdgeInsets.all(0),
+                      child: MyTextField(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Padding(
+                      padding: EdgeInsets.all(0),
+                      child: MyTextField(
+                        controller: repasswordController,
+                        hintText: 'Confirm Password',
+                        obscureText: true,
+                      ),
+                    ),
                   ],
                 ),
-              ),*/
-               // ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
+
+              CupertinoSlidingSegmentedControl<int>(
+                padding: const EdgeInsets.all(0),
+                groupValue: groupValue,
+                children: {
+                  0: buildSegment('Student'),
+                  1: buildSegment('Organization'),
+                },
+                onValueChanged: (value) {
+                  setState(() {
+                    groupValue = value!;
+                  });
+                },
+              ),
+
+              SizedBox(height: 20),
+
               Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
-                  onPressed: () {},
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                  color: Color.fromARGB(255, 247,157,101),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                   child: Text("Sign Up", style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: Colors.black,
                   ),
                   ),
                 ),
@@ -147,7 +174,7 @@ class SignUp extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Already a member? '),
+                  Text('Already a member? ', style: TextStyle(fontWeight: FontWeight.bold)),
                   GestureDetector(
                     onTap: () {
                       // Navigate to the LogIn page when pressed
@@ -159,19 +186,31 @@ class SignUp extends StatelessWidget {
                     child: Text(
                       'Log In.',
                       style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         color: Colors.black, // Customize the color as needed
                         decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
+                  SizedBox(height: 20),
+
+                  Padding(padding: EdgeInsets.only(bottom: 50)),
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget buildSegment(String text) => Container(
+    padding: const EdgeInsets.all(15),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 20),
+    ),
+  );
 }
 
 Widget InputText({label, obscureText = false})
@@ -201,9 +240,11 @@ Widget InputText({label, obscureText = false})
             )
         ),
       ),
-      SizedBox(height: 10,)
+      SizedBox(height: 30)
     ],
   );
+
+
 }
 
 enum UserType {
