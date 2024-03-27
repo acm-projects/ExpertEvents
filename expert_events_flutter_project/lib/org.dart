@@ -83,7 +83,7 @@ class OrgDatabaseService {
 
   Future updateOrganizationData(String orgName, String orgEmail, String descrip,
       String profilePic) async {
-    return await organizationCollection.doc(uid).set({
+    return await organizationCollection.doc(orgName).set({
       'Organizaton Name': orgName,
       'Organization Email': orgEmail,
       'Description': descrip,
@@ -95,11 +95,11 @@ class OrgDatabaseService {
       String location, String time, String poster) async {
     await org_eventsCollection.add({
       'Event Name': evName,
-      'Organization': orgName,
-      'Description': descrip,
-      'Location': location,
-      'Time': time,
-      'Poster Link': poster,
+      // 'Organization': orgName,
+      // 'Description': descrip,
+      // 'Location': location,
+      // 'Time': time,
+      // 'Poster Link': poster,
     });
 
     await DatabaseService(evName)

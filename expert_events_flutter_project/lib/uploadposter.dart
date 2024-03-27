@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'mytextfield.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'org.dart';
 
 final TextEditingController eventNameController = TextEditingController();
 final TextEditingController descriptionController = TextEditingController();
@@ -54,13 +55,21 @@ Future<void> _uploadImageToFirebase() async {
     // Get the download URL of the uploaded image
     final String downloadURL = await storageRef.getDownloadURL();
 
-    await DatabaseService(eventNameController.text).updateEventData(
-      eventNameController.text,
+    // await DatabaseService(eventNameController.text).updateEventData(
+    //   eventNameController.text,
+    //   descriptionController.text,
+    //   dateController.text,
+    //   timeController.text,
+    //   locationController.text,
+    //   downloadURL, // Image URL
+    // );
+
+    await OrgDatabaseService(descriptionController.text).addEvents(eventNameController.text,
       descriptionController.text,
       dateController.text,
       timeController.text,
       locationController.text,
-      downloadURL, // Image URL
+      downloadURL, // Image URL)
     );
   print('Image uploaded to Firebase Storage: $downloadURL');
   } catch (e) {

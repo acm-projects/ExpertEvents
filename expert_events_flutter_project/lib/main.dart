@@ -7,6 +7,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_config.dart';
 import 'org.dart';
 import 'uploadposter.dart';
+import 'mainevents.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,28 +16,31 @@ Future<void> main() async{
 ); 
  //await DatabaseService('AB').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
  //await DatabaseService('AB').addReview('Seeyan', 'It was awesome!', 5);
-   await OrgDatabaseService('test4').updateOrganizationData(
+   await OrgDatabaseService('test5').updateOrganizationData(
       'ACM',
       'acm@utdallas.edu',
       'This is the ACM org description',
       'Profile picture url');
-  await OrgDatabaseService('test4').addEvents(
+  await OrgDatabaseService('test5').addEvents(
       'SSO night',
       'SSO',
       'Study is gonnna happen!!!',
       'ECSW 2.320',
       'TUESDAY 8:30pm',
       'insert SSO poster url');
-  await OrgDatabaseService('test4')
+  await OrgDatabaseService('test5')
       .addMessages('ACM', 'BSO', 'Hi we invite you to our event', '8:30 PM');
-  await OrgDatabaseService('test4')
+  await OrgDatabaseService('test5')
       .addOrgFriends('Friend specific doc id for refference');
 //runApp(const MyApp());
 
   runApp(MaterialApp(
-    home: UploadPoster(),
+    home: MainEvents(),
   ));
+
 }
+
+
 void test() {
   // DatabaseService('ABCDE').updateEventData('ACM Build night', 'ACM', 'Build night is coming up!', 'ECSS', 'Wednesday 7:00pm', 'ACM!!!');
   // DatabaseService('ABCDE').addReview('John', 'It was awesome!', 5);
@@ -161,3 +165,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
