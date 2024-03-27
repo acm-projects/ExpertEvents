@@ -27,7 +27,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Color.fromARGB(255, 247, 244, 244),
+        backgroundColor: Color.fromARGB(255, 248, 152, 122), 
         leading: IconButton(
       onPressed: () {
         Navigator.pop(context);
@@ -43,8 +43,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
         widget.eventName, //name of the event
         style: TextStyle(
           color: Colors.black,
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
+          fontSize: 25,
         ),
       ),
       

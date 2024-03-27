@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/mytextfield.dart';
+import 'mytextfield.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../firebase_auth_implementation/firebase_auth_services.dart';
+import '../models/user.dart';
+import '../models/message.dart';
+import '../services/messagesdb_services.dart';
+import 'package:intl/intl.dart';
 
 class MessagePage extends StatefulWidget {
   final String recipient;
@@ -13,6 +22,8 @@ class MessagePage extends StatefulWidget {
 class _MessagePageState extends State<MessagePage> {
   TextEditingController _messageController = TextEditingController(); //what the user types in
   List<Message> _messages = []; // stores all the messages sent
+
+  //final MessagesService messagesService = MessagesService();
 
   @override
   void dispose() {
@@ -28,10 +39,13 @@ class _MessagePageState extends State<MessagePage> {
         content: messageText,
         timestamp: DateTime.now(),
       );
+      //Message1 dbMessage = Message1(text: messageText, sentTime: Timestamp.now());
       setState(() {
         _messages.add(message);
         _messageController.clear(); //clear the text field where the user types
       });
+      //adds message to the database
+      //messagesService.addMessages(dbMessage);
     }
   }
 

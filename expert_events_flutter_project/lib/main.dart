@@ -1,19 +1,34 @@
-import 'package:myapp/uploadposter.dart';
+//some packages that we need
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'login.dart';
+
+
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import '../firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../models/user.dart';
+import 'uploadposter.dart';
 
 import 'signup.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 
-void main() {
+void main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.web,
+  );
+
   runApp(MaterialApp(
     home: Home(),
-  ));
-}
+    ));
+} 
+
 
 class Home extends StatelessWidget {
 
-  // This widget is the root of your application.
-  @override
   Widget build(BuildContext context) {
     /*
     return MaterialApp(
@@ -34,11 +49,14 @@ class Home extends StatelessWidget {
                 children: <Widget>[
                     Text(
                       "Welcome to Expert Events!",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
+                      
                       ),
                     ),
+                    
                     SizedBox(
                      height: 20,
                     ),
@@ -50,16 +68,28 @@ class Home extends StatelessWidget {
                 ),
               Column(
                 children: <Widget>[
-                  MaterialButton(
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  child: MaterialButton(
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                     },
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 242, 112, 89),
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: Colors.black
+                        color: Color.fromARGB(255, 242, 112, 89)
                       ),
                       borderRadius: BorderRadius.circular(50)
                     ),
@@ -68,23 +98,36 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
+                  ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  MaterialButton(
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  child: MaterialButton(
                     minWidth: double.infinity,
                     height: 60,
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
                     },
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 247,157,101),
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: Colors.black
+                        color: Color.fromARGB(255,247,157,101)
                       ),
                       borderRadius: BorderRadius.circular(50)
                     ),
@@ -93,10 +136,11 @@ class Home extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 20,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ),
+                  )
                 ],
               )
             ]

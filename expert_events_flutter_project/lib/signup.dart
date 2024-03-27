@@ -53,22 +53,15 @@ class _SignUpState extends State<SignUp> {
                   'assets/ExpertEventsLogo.jpg',
                   width: 100,
                 ),
-                const SizedBox(height: 35),
+                const SizedBox(height: 20),
                   Text("Sign Up for Expert Events",
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),),
                   SizedBox(height: 20),
-                  Text("Create an account!",
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.grey,
-                    ),
-                  ),
                 ],
               ),
-              SizedBox(height: 20),
           Padding(
             padding: EdgeInsets.all(0),
             child: Column(
@@ -127,7 +120,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
               CupertinoSlidingSegmentedControl<int>(
                   padding: const EdgeInsets.all(0),
@@ -143,9 +136,20 @@ class _SignUpState extends State<SignUp> {
                   },
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 20),
 
               Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
                 child: MaterialButton(
                   minWidth: double.infinity,
                   height: 60,
@@ -155,13 +159,13 @@ class _SignUpState extends State<SignUp> {
                         MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                   },
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Color.fromARGB(255, 247,157,101),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                   child: Text("Sign Up", style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                    color: Colors.black,
                   ),
                   ),
                 ),
@@ -170,7 +174,7 @@ class _SignUpState extends State<SignUp> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Already a member? '),
+                  Text('Already a member? ', style: TextStyle(fontWeight: FontWeight.bold)),
                   GestureDetector(
                     onTap: () {
                       // Navigate to the LogIn page when pressed
@@ -182,11 +186,13 @@ class _SignUpState extends State<SignUp> {
                     child: Text(
                       'Log In.',
                       style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         color: Colors.black, // Customize the color as needed
                         decoration: TextDecoration.underline,
                       ),
                     ),
                   ),
+                  SizedBox(height: 20),
                 ],
               )
             ],
@@ -232,7 +238,7 @@ Widget InputText({label, obscureText = false})
             )
         ),
       ),
-      SizedBox(height: 10,)
+      SizedBox(height: 30)
     ],
   );
 

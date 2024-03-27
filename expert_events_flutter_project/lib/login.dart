@@ -34,25 +34,27 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 30),
           child: Center(
             child: Column(
-              children: [
+              children: <Widget>[
                 Image.asset(
                   'assets/ExpertEventsLogo.jpg',
                   width: 100,
                 ),
                 const SizedBox(height: 35),
                 Text(
-                  "Welcome to Expert Events!",
+                  "Please Login",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.black,
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: MyTextField(
                     controller: usernameController,
                     hintText: 'Username',
@@ -61,16 +63,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
                   child: MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
                     obscureText: true,
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 CupertinoSlidingSegmentedControl<int>(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(0),
                   groupValue: groupValue,
                   children: {
                     0: buildSegment('Student'),
@@ -82,9 +84,20 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  margin: const EdgeInsets.symmetric(horizontal: 0),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -93,24 +106,24 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(25),
-                      backgroundColor: Colors.black,
+                      padding: const EdgeInsets.all(15),
+                      backgroundColor: Color.fromARGB(255, 242, 112, 89),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(50),
                       ),
                       minimumSize: const Size(double.infinity, 50),
                     ),
                     child: const Text(
                       "Login",
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 20,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
                 Center(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

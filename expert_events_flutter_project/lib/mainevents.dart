@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+      backgroundColor: /*Color.fromARGB(255, 242, 112, 89)*/Color.fromARGB(255, 247,157,101),
         title: const Text("Main Events"),
         centerTitle: true,
         leading: Padding(
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.grey,
+       backgroundColor: /*Color.fromARGB(255, 242, 112, 89)*/ Color.fromARGB(255, 247,157,101),
         iconSize: 30,
         unselectedFontSize: 15,
         selectedFontSize: 16,
@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
           //IF YOU PRESS ON THE POSTER, YOU WILL GO TO THE MORE DETAILED EVENT PAGE; NEED TO UPDATE WITH SPECIFIC EVENT INFORMATION (FROM BACK END?)
           onTap: () {
             Navigator.push(context, 
-            MaterialPageRoute(builder: (context) => EventDetailPage(eventName: 'Event B)', eventDescription: 'This is a description of the event that the user pressed. Later on, this needs to be replaced with the description that the organization loads in. I think this will be done with information stored in back end :D', eventDate: 'Today :O', image: posterImage, location: 'ECSS 2.412')),
+            MaterialPageRoute(builder: (context) => EventDetailPage(eventName: 'Event', eventDescription: 'This is a description of the event that the user pressed. Later on, this needs to be replaced with the description that the organization loads in. I think this will be done with information stored in back end :D', eventDate: 'Today :O', image: posterImage, location: 'ECSS 2.412')),
             );
           },
           child: Padding(
@@ -163,9 +163,8 @@ class _HomePageState extends State<HomePage> {
         
         // Contains code for the bell, heart, and share icons
         Container(
-          color: Colors.grey.shade300,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.only(right: 10, top: 12, bottom: 12),
             child: Row(
               children: [
                 /*LikeButton(
